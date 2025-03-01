@@ -4,9 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Business extends Model
+class Branch extends Model
 {
     use HasFactory;
     
@@ -16,6 +17,7 @@ class Business extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'business_id',
         'name',
         'address',
         'country_code',
@@ -35,15 +37,15 @@ class Business extends Model
     ];
     
     /**
-     * Get the branches for the business.
+     * Get the business that owns the branch.
      */
-    public function branches(): HasMany
+    public function business(): BelongsTo
     {
-        return $this->hasMany(Branch::class);
+        return $this->belongsTo(Business::class);
     }
     
     /**
-     * Get the users for the business.
+     * Get the users for the branch.
      */
     public function users(): HasMany
     {
