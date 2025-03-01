@@ -13,6 +13,7 @@ alwaysApply: false
 - Generate the relationships inside the Model file based on the given foreign keys
 - Create a controller with the `--api --resource --model {Model Name}` parameters
 - Create `HTTP Requests` for each request type (e.g. Index, Store, Show, Update, Delete) via the `artisan make:request` command with `Model Name` as the folder and the request type as the class name. Such as that each API Resource will have `ModelName/IndexRequest.php`, `ModelName/StoreRequest.php`, `ModelName/ShowRequest.php`, `ModelName/UpdateRequest.php`, and `ModelName/DestroyRequest.php`
+- The `index()` function must have pagination implemented, with default 15 rows but accepts an optional override using `per_page` request key. Additionally, model fields that are usually searched must be searchable using wildcard (LIKE) property or `whereIn` when it makes sense.
 - Based on the context of the model's fields, create the appropriate rules on the `StoreRequest` and `UpdateRequest` request files. Do not put the validation in the Controller file.
 - Use the generated HTTP Requests instead of the default `Illuminate\Http\Request` in the dependency injection in the genenerated controller
 - For each request type, generate an `HTTP Response` via the `artisan make:resource`, then add all the existing columns of the model. Use this HTTP response as the default response for all request functions except for delete.
