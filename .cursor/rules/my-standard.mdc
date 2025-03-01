@@ -7,13 +7,13 @@ alwaysApply: false
 # Your rule content
 
 ## When asked to create an `API RESOURCE`, perform the following steps:
-- Create a model with the `-m` parameter to generate a migration file too
+- Create a model and a migration file based on the current timestamp
 - Attempt to generate the columns and their data types and parameters based on the given table structure
 - Add these columns to the `$fillable` property of the model except for the auto-incrementing ID
 - Generate the relationships inside the Model file based on the given foreign keys
 - Create a controller with the `--api --resource --model {Model Name}` parameters
-- Create `HTTP Requests` for each request type (e.g. Index, Store, Show, Update, Delete) via the `artisan make:request` command with `Model Name` as the folder and the request type as the class name
-- Based on the context of the model's fields, try to create the appropriate rules on the Store and Update request files
+- Create `HTTP Requests` for each request type (e.g. Index, Store, Show, Update, Delete) via the `artisan make:request` command with `Model Name` as the folder and the request type as the class name. Such as that each API Resource will have `ModelName/IndexRequest.php`, `ModelName/StoreRequest.php`, `ModelName/ShowRequest.php`, `ModelName/UpdateRequest.php`, and `ModelName/DestroyRequest.php`
+- Based on the context of the model's fields, create the appropriate rules on the Store and Update request files
 - Use the generated HTTP Requests instead of the default `Illuminate\Http\Request` in the dependency injection in the genenerated controller
 - For each request type, generate an `HTTP Response` via the `artisan make:response`, then add all the existing columns of the model. Use this HTTP response as the default response for all request functions except for delete.
 - Add the generated controller in the `/routes/api.php` as a `Route::apiResource`
